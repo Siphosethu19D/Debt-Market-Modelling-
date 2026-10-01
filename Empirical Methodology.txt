@@ -1,0 +1,236 @@
+5. Empirical Methodology
+5.1 Replication Approach
+
+This study conducts a methodological replication of the Bayesian extension to the Diebold-Li term structure model proposed by Laurini and Hotta. Rather than using the original Brazilian BM&F Swap DI-PRÉ yield curve data, the replication uses daily U.S. Treasury yield curve observations spanning January 2004 to December 2006.
+
+The objective is not to reproduce the exact numerical results reported in the original paper, but rather to evaluate whether the same modelling framework can successfully describe and forecast a different term structure dataset.
+
+The analysis proceeds through four stages:
+
+Data preparation and exploratory analysis.
+Estimation of a baseline Dynamic Nelson-Siegel (Diebold-Li) model.
+Estimation of a Dynamic Svensson yield curve model.
+Estimation of a Bayesian time-varying Svensson model with stochastic volatility.
+
+The performance of the models is compared using both in-sample fit and out-of-sample forecasting accuracy.
+
+5.2 Dataset
+
+The replication uses the U.S. Treasury Daily Par Yield Curve Rates published by the U.S. Department of the Treasury.
+
+The dataset contains daily observations of Treasury yields across multiple maturities:
+
+1 Month
+3 Month
+6 Month
+1 Year
+2 Year
+3 Year
+5 Year
+7 Year
+10 Year
+20 Year
+30 Year
+
+The sample period covers January 2004 to December 2006.
+
+The original wide-format dataset was transformed into a long-format panel structure where each observation represents a specific maturity on a particular date.
+
+Each observation contains:
+
+Date
+Maturity
+Yield (percentage)
+Yield (decimal form)
+
+No interpolation was applied to create missing maturity observations.
+
+5.3 Exploratory Analysis
+
+Prior to model estimation, several descriptive analyses were performed.
+
+These include:
+
+Yield curve visualisation over time.
+Average yield curve estimation.
+Yield volatility analysis by maturity.
+Yield heatmaps.
+Yield curve surface plots.
+
+The objective of this step was to understand the behaviour of level, slope, and curvature within the Treasury yield curve and identify whether the data exhibited sufficient variation for latent factor modelling.
+
+5.4 Baseline Dynamic Nelson-Siegel Model
+
+As a benchmark, a Dynamic Nelson-Siegel model was estimated.
+
+The Nelson-Siegel specification expresses yields as a function of three latent factors:
+
+Level factor
+Slope factor
+Curvature factor
+
+For each trading day:
+
+The Nelson-Siegel curve was fitted to observed yields.
+Daily factor estimates were obtained.
+The evolution of these factors through time was modelled using autoregressive dynamics.
+One-step-ahead factor forecasts were produced.
+Forecasts were converted back into yield curve predictions.
+
+The estimated factors were interpreted as:
+
+Level: long-run interest rate level.
+Slope: difference between short- and long-term rates.
+Curvature: medium-term hump or trough in the yield curve.
+
+This model serves as the primary benchmark against which more flexible specifications are compared.
+
+5.5 Dynamic Svensson Model
+
+To allow greater flexibility in yield curve shape, a Dynamic Svensson specification was estimated.
+
+The Svensson model extends Nelson-Siegel by introducing:
+
+a second curvature factor; and
+an additional decay parameter.
+
+This allows the model to capture more complex yield curve behaviour, including multiple turning points.
+
+For each date:
+
+The Svensson curve was estimated using nonlinear least squares.
+Daily parameter estimates were extracted.
+Time-series behaviour of the parameters was analysed.
+One-step-ahead yield forecasts were generated.
+
+Model convergence statistics were retained throughout the estimation process.
+
+5.6 Bayesian Svensson Model
+
+The main empirical model is a Bayesian extension of the Svensson yield curve framework.
+
+The observed yield curve is modelled as a Svensson function whose parameters evolve through time.
+
+The latent state vector consists of:
+
+Level factor
+Slope factor
+First curvature factor
+Second curvature factor
+
+The factors are treated as unobserved stochastic processes.
+
+Rather than estimating each day independently, the Bayesian approach estimates all states jointly while incorporating prior information.
+
+This allows uncertainty in parameter estimation to be formally incorporated into the model.
+
+5.7 State Dynamics
+
+The latent factors were assumed to follow autoregressive dynamics.
+
+Each parameter evolves according to an AR(1) process:
+
+xt=μ+ϕ(xt−1−μ)+εtx_t = \mu + \phi(x_{t-1}-\mu)+\varepsilon_txt​=μ+ϕ(xt−1​−μ)+εt​
+
+where:
+
+xtx_txt​ is the latent state,
+μ\muμ is the long-run mean,
+ϕ\phiϕ measures persistence,
+εt\varepsilon_tεt​ is a random shock.
+
+This specification allows the model to capture the strong persistence commonly observed in term structure factors.
+
+5.8 Stochastic Volatility
+
+To account for changing uncertainty through time, stochastic volatility was incorporated into the Bayesian specification.
+
+The volatility process follows a latent autoregressive structure:
+
+ht=μh+ϕh(ht−1−μh)+ηth_t = \mu_h + \phi_h(h_{t-1}-\mu_h)+\eta_tht​=μh​+ϕh​(ht−1​−μh​)+ηt​
+
+where:
+
+hth_tht​ is log-volatility,
+μh\mu_hμh​ is the long-run volatility level,
+ϕh\phi_hϕh​ measures volatility persistence.
+
+The observation variance is then given by:
+
+σt2=eht\sigma_t^2 = e^{h_t}σt2​=eht​
+
+This allows forecast uncertainty to increase or decrease over time rather than remaining constant.
+
+5.9 Bayesian Estimation
+
+The Bayesian model was estimated using Markov Chain Monte Carlo (MCMC) simulation.
+
+Posterior distributions were obtained for:
+
+latent factors;
+decay parameters;
+volatility states;
+autoregressive parameters.
+
+A Bayesian sampling framework was used to generate posterior draws and estimate:
+
+posterior means;
+posterior medians;
+credible intervals;
+posterior predictive distributions.
+
+Unlike classical estimation approaches, Bayesian estimation allows uncertainty in all parameters to be propagated into the forecasts.
+
+5.10 Forecast Evaluation
+
+Model performance was evaluated using one-step-ahead forecasts.
+
+Forecasts were generated using only information available up to the forecast date.
+
+The following forecasting metrics were calculated:
+
+Root Mean Squared Error (RMSE)
+Mean Absolute Error (MAE)
+Mean Forecast Error
+Predictive Interval Coverage
+
+Results were evaluated:
+
+overall;
+by maturity;
+across alternative model specifications.
+5.11 Comparison with the Original Paper
+
+Several methodological differences exist between this replication and the original study.
+
+The most important differences are:
+
+Dataset
+
+Original paper: Brazilian BM&F Swap DI-PRÉ yield curves.
+Replication: U.S. Treasury par yield curves.
+
+Market Environment
+
+Original paper: Emerging market interest rates.
+Replication: Developed sovereign bond market.
+
+Maturity Structure
+
+Original paper: Irregular maturities varying through time.
+Replication: Mostly fixed Treasury maturity grid.
+
+Bayesian Computation
+
+Original paper: Hybrid Gibbs and Metropolis-Hastings sampling.
+Replication: Bayesian estimation implemented using modern probabilistic programming tools for computational tractability.
+
+Diagnostics
+
+Replication additionally reports modern MCMC diagnostics such as:
+Trace plots,
+Effective Sample Size,
+R-hat statistics,
+Posterior convergence diagnostics.
+
+Despite these differences, the core economic methodology remains unchanged. The replication preserves the paper's central ideas of dynamic latent yield-curve factors, Bayesian inference, a flexible Svensson yield curve specification, and stochastic volatility modelling.
