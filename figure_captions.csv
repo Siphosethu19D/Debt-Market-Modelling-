@@ -1,0 +1,26 @@
+figure_file,caption
+01_yields_over_time.png,"U.S. Treasury par yields in percent, by maturity, over 2004-2006."
+02_yield_curve_surface.png,Three-dimensional surface of the yield curve across time and maturity.
+03_selected_yield_curves.png,Daily yield curves on evenly spaced dates across the sample.
+04_average_yield_curve.png,"Sample-mean yield curve, 2004-2006."
+05_volatility_by_maturity.png,"Standard deviation of yields in percent, by maturity."
+06_maturity_coverage.png,Number of available maturities per date (ragged where 30Y is missing).
+07_yield_heatmap.png,Heatmap of yields (percent) by date index and maturity.
+08_nelson_siegel_factors.png,"Daily Nelson-Siegel level, slope and curvature factors."
+09_nelson_siegel_observed_fitted.png,Observed yields versus Nelson-Siegel fitted curves on selected dates.
+10_nelson_siegel_residuals.png,"Nelson-Siegel residuals (observed minus fitted, decimal yield)."
+11_svensson_factors.png,Classical Svensson factors over time.
+12_svensson_decay_parameters.png,Classical Svensson decay (lambda) parameters over time.
+13_svensson_observed_fitted.png,Observed yields versus Svensson fitted curves on selected dates.
+14_svensson_residuals.png,Svensson residuals heatmap (decimal yield).
+15_stochastic_volatility.png,Posterior stochastic-volatility path (or constant-variance fallback).
+16_mcmc_trace_plots.png,Trace plots for the scalar posterior parameters.
+17_posterior_distributions.png,Posterior densities for the scalar parameters.
+18_autocorrelation_plots.png,Autocorrelation of posterior draws for the scalar parameters.
+19_forecast_rmse_comparison.png,One-step-ahead forecast RMSE per model.
+20_forecast_rmse_by_maturity.png,"Forecast RMSE as a function of maturity, by model."
+21_selected_forecast_curves.png,Forecast yield curves on selected test dates.
+22_posterior_predictive_intervals.png,"Bayesian posterior predictive mean and 95% interval, 5-year maturity."
+23_forecast_errors_over_time.png,"Forecast errors in basis points, 5-year maturity, by model."
+24_in_sample_fit_comparison.png,In-sample RMSE across models.
+25_representative_curve_comparison.png,Representative yield-curve dates: observed and fitted curves across models.
